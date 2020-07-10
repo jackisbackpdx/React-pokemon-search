@@ -1,38 +1,117 @@
-.App {
+* { 
+  box-sizing: border-box;
+}
+
+#root {
+  width: 100%;
+}
+
+.pokemon-card {
+  height: 200px;
+  width: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  background-color: #4484c4;
+  margin: 5px;
+  z-index: 0;
+  border-radius: 3px;
+  transition: .5s ease-in;
+}
+.pokemon-card img {
+  height: 100px;
+  width: 100px;
+  background: url(https://i.imgur.com/rjreufu.png);
+  border-radius: 8px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.pokemon-card p {
+  width: 100px;
+  height: 1.2rem;
+  border-radius: 8px;
+  margin-bottom: 0px;
+}
+.pokemon-card h3{
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.pokemon-card:hover {
+  transition: .5s ease-in;
+  background-color: #FFF;
+  transform: scale(1.09);
+  z-index: 1;
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #223343;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 90%;
+  background-color: #223343;
+}
+.search {
+  width: 84.5%;
+  height: 90px;
+  outline:none;
+  border: none;
+
+  background-color: #eee;
+  color: #53565A;
+  border-radius: 8px;
+  font-size: 36px;
+  font-weight: 500;
+  transition: .5s ease-out;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+.search:focus{
+  box-shadow: 0px 0px 8px 3px #4484cd
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.load-more {
+  margin-top: 20px;
+  height: 70px;
+  width: 200px;
+  font-size: 22px;
+
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  transition: .4s ease-out;
+
+  margin-bottom: 20px;
+}
+
+.load-more:hover {
+  background-color: #4484cd;
+  cursor: pointer;
+}
+
+.pokemon-card div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
