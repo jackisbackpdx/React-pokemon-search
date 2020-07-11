@@ -31,7 +31,9 @@
   width: 100px;
   height: 1.2rem;
   border-radius: 8px;
+  padding-top: 0px;
   margin-bottom: 0px;
+  margin-top: 5px;
 }
 .pokemon-card h3{
   margin-top: 0px;
@@ -61,10 +63,11 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   width: 90%;
+  border-radius: 3px;
   background-color: #223343;
 }
 .search {
-  width: 84.5%;
+  width: 60%;
   height: 90px;
   outline:none;
   border: none;
@@ -78,6 +81,14 @@ body {
   margin-bottom: 10px;
   margin-top: 10px;
   padding-left: 10px;
+
+  text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .search {
+    width: 77%;
+  }
 }
 
 .search:focus{
@@ -124,11 +135,78 @@ body {
 
 .header img:hover {
   transition: .4s ease-in;
-  transform: rotate(15deg)
+  animation-name: gyrate;
+  animation-duration: 4s;
+  cursor: pointer;
+}
+
+@keyframes gyrate {
+  0% {
+    transform: rotate(0)
+  }
+  25% {
+    transform: rotate(15deg)
+  }
+  75% {
+    transform: rotate(-15deg)
+  }
+  100% {
+    transform: rotate(0deg)
+  }
 }
 
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.popup {
+  position: fixed;
+  height: 100vh;
+  width: 90%;
+  background-color:#f34646;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.moves p {
+  width: 160px;
+  text-align: center;
+}
+
+.moves {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.popup button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: black;
+}
+
+.abilities {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-disp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.close {
+  height: 20px;
+  font-size: 20px;
+}
+
+.popup img {
+  height: 150px;
 }

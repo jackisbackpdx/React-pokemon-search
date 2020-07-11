@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Search from './components/Search'
 import Results from './components/Results'
 import Header from './components/Header'
 import LoadMore from './components/LoadMore'
-
+import Popup from './components/Popup'
 
 class App extends Component {
   constructor(props) {
@@ -20,9 +21,12 @@ class App extends Component {
         amount: 100,
         dataSet: false,
         disabled: true,
+        chosen: '',
     }
     this.handleInput = this.handleInput.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.choosePokemon = this.choosePokemon.bind(this);
+    this.pokeBallClick = this.pokeBallClick.bind(this);
   }
   
   componentDidMount() {
@@ -82,14 +86,52 @@ class App extends Component {
     }
   }
 
+  choosePokemon(e) {
+    let outOne;
+    if(e.target.className === 'pokemon-card') {
+      outOne = e.target;
+    }
+    if (e.target.className !== 'pokemon-card') {
+      outOne = e.target.parentElement;
+      if (outOne.className !== 'pokemon-card') {
+        outOne = e.target.parentElement.parentElement;
+      } 
+    }
+    let chosenName = outOne.querySelector('h3').textContent.toLowerCase();
+    let chosenObject;
+    this.state.fullRes.forEach(pokemon => {
+        if (pokemon.name === chosenName) {
+            chosenObject = pokemon;
+            console.log(chosenObject)
+        }
+    })
+
+    this.setState({chosen: chosenObject})
+  }
+
+  close() {
+    this.setState({chosen: ''})
+  }
+
+  pokeBallClick() {
+    this.setState({s: ''})
+  }
+
   render() {
 
     return (
       <div className='main'>
-        <Header/>
+        <Header reset={this.pokeBallClick}/>
         <Search value={this.state.s} handleInput={this.handleInput}/>
-        {this.state.s.length > 0 ? <Results data={this.state.searched}/> : <Results data={this.state.pokemon}/>}
+        {this.state.s.length > 0 ? 
+        <Results 
+          choosePokemon={this.choosePokemon} 
+          data={this.state.searched}/> : 
+        <Results
+          choosePokemon={this.choosePokemon}
+          data={this.state.pokemon}/>}
         <LoadMore handleClick={this.handleClick}/>
+        {(this.state.chosen !== '') ? <Popup close={() => this.close()} toDisplay={this.state.chosen}/> : null}
         <br/>
       </div>
     );

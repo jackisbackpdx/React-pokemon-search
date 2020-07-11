@@ -14,12 +14,11 @@ class Results extends Component {
 
     makePokemon() {
         return this.props.data.map(item => {
-            return <Pokemon name={item.name} type={item.types[0].type.name} image={item.sprites.front_default}/>
+            return <Pokemon choosePokemon={this.props.choosePokemon} key={item.id} name={item.name} type={item.types[0].type.name} image={item.sprites.front_default}/>
         })   
     }
 
     render() {
-        console.log(this.props.data)
         return (
             <div className='container'>
                 {this.makePokemon()}
